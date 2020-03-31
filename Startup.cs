@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,6 +32,9 @@ namespace Blogs
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+
+            services.AddDbContext<ArticleContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("ArticleContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
